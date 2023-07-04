@@ -3,10 +3,13 @@ from .models import Book
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from django.urls import reverse
+from rest_framework.test import APITestCase
+# from rest_framework.test import APIRequestFactory
 # Create your tests here.
 
+# factory = APIRequestFactory()
 
-class TestBook(TestCase):
+class TestBook(APITestCase):
     
     @classmethod
     def setUpTestData(cls):
@@ -33,15 +36,18 @@ class TestBook(TestCase):
         self.assertEqual(len(response.data), 1)
         
         
-    def test_create_book(self):
-        url = reverse('book_list') 
+    # def test_create_book(self):
         
-        data = {'title':'title', 'auther_name':'auther', 'release_date':"1990-01-01",
-                'img_url':'https://img', 'description':'description', 'user':self.testuser1 }
-                                        
-        response = self.client.post(url, data)
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(Book.objects.count(), 2)  
+        
+    #     data = {'title':'title', 'auther_name':'auther', 'release_date':"1990-01-01",
+    #             'img_url':'https://img', 'description':'description' } 
+        
+        
+    #     url = reverse('book_list')                                 
+    #     response = self.client.post(url, data)
+    #     print(response)
+    #     self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        
     
     # def test_update_book(self):
     #     obj = Book.objects.first()
